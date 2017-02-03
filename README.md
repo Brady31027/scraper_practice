@@ -10,4 +10,4 @@ sudo brew reinstall python3
 
 pip3 install beautifulsoup4
 
-sudo chown <usr>:<grp> /usr/local/bin/brew
+sudo chown \<usr\>:\<grp\> /usr/local/bin/brew
