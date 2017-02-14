@@ -83,7 +83,6 @@ class WholeFoodOnSale():
     original_price_class_identifier = 'reg_line'
     save_money_price_class_identifier = 'you_save'
     valid_date_span_identifier = 'date-display-single'
-    #img src = "//assets.wholefoodsmarket.com/sale_items/249409.jpg
 
     def __init__(self, state, store):
         self.state = state
@@ -117,7 +116,7 @@ class WholeFoodOnSale():
             brand_name = prod_html.find("div", { "class" : self.prod_brand_class_identifier })
             brand_name = brand_name.get_text()
         except:
-            print("Cannot find product brand : "+ prod_html.get_text())
+            print("Cannot find product brand")
             return 'NULL'
         return brand_name
 
@@ -126,7 +125,7 @@ class WholeFoodOnSale():
             prod_name = prod_html.find("div", { "class" : self.prod_name_class_identifier })
             prod_name = prod_name.get_text()
         except:
-            print("Cannot find product name : "+ prod_html.get_text())
+            print("Cannot find product name")
             return 'NULL'
         return prod_name
 
@@ -135,7 +134,7 @@ class WholeFoodOnSale():
             prod_desc = prod_html.find("div", {"class": self.prod_desc_class_identifier})
             prod_desc = prod_desc.get_text()
         except:
-            print("Cannot find product desc : "+ prod_html.get_text())
+            print("Cannot find product desc")
             return 'NULL'
         else:
             return prod_desc
@@ -172,10 +171,10 @@ class WholeFoodOnSale():
         try:
             l_valid_date = prod_html.findAll("span", {"class": self.valid_date_span_identifier})
             if len(l_valid_date) != 2:
-                print("valid date data number is incorrect\n")
+                print("valid date data number is incorrect")
                 return "NULL"
         except:
-            print("valid date data number is incorrect\n")
+            print("valid date data number is incorrect")
             return "NULL"
         date = "Valid from {} to {}".format(l_valid_date[0].get_text(), l_valid_date[1].get_text())
         return date
@@ -200,8 +199,6 @@ class WholeFoodOnSale():
                 return []
         l_on_sale_items = bs_obj.findAll("div", { "class" : "views-row views-row-odd" })
         print("On sale product count = " + str(len(l_on_sale_items)))
-
-        #print(l_on_sale_items[0])
         for product in l_on_sale_items:
             print("------------------------------\n")
             print(self.get_product_brand(product))
