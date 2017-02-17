@@ -95,10 +95,10 @@ class WholeFoodOnSale():
         return self.store
 
     def generate_url(self, raw_store):
-        print("original store name = " + raw_store)
+        #print("original store name = " + raw_store)
         refined_store = re.sub("\s+", '', raw_store)
         refined_store = refined_store.lower()
-        print("refined store name = " + refined_store)
+        #print("refined store name = " + refined_store)
         return self.on_sale_base_url+refined_store
 
     def connect_to_server(self, url):
