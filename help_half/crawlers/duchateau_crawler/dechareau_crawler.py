@@ -17,11 +17,4 @@ collectionList = {
     'vinyl_deluxe_grand':'vinyl_deluxe_grand.html'
 }
 
-for k in collectionList:
-    mock_file = k + '.html'
-    try:
-        print("pass at {}".format(k))
-        f = open(collectionList[k], 'r')
-    except IOError:
-        print("error happened at {}".format(k))
-        pass
+baseUrl = 'http://duchateau.com/'
