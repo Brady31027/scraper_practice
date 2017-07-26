@@ -82,6 +82,9 @@ class KMeans():
 			self.calculateCenters()
 			runCnt += 1
 
+	def getPoints(self):
+		return self.points
+
 	def getClusters(self):
 		return self.clusters
 
@@ -140,6 +143,8 @@ for i in xrange(len(results)):
 fig = plt.figure(num=1)
 fig3d = plt3d.Axes3D(fig)
 
+points = kmeans.getPoints()
+
 R = np.array(io.redChannel)
 G = np.array(io.greenChannel)
 B = np.array(io.blueChannel)
@@ -161,6 +166,7 @@ ax.hold(True)
 # plot center
 for i in xrange(kmeans.k):
 	color = "red"
+	"""
 	if i == 0:
 		color = "red"
 	elif i == 1:
@@ -173,15 +179,33 @@ for i in xrange(kmeans.k):
 		color= "blue"
 	else:
 		color = "purple"
-
+	"""
 	ax.scatter(CR[i], CG[i], CB[i], color=color)
 
 # plot data
 for i in xrange(0, len(R), 1):
+	# plot raw data
+	"""
 	r = "%02x" % (R[i])
 	g = "%02x" % (G[i])
 	b = "%02x" % (B[i])
 	color = '#'+r+g+b
+	"""
+	# plot classified data
+	c = points[i]._class
+	if c == 0:
+		color = "orange"
+	elif c == 1:
+		color = "yellow"
+	elif c == 2:
+		color = "green"
+	elif c == 3:
+		color = "blue"
+	elif c == 4:
+		color = "purple"
+	else:
+		color = "black"
+
 	ax.scatter(R[i], G[i], B[i], color=color)
 
 plt.show()
