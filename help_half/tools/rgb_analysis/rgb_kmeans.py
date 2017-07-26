@@ -5,6 +5,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d as plt3d
 
+# Final params
+"""
+cluster GRAY with center 85,77,72 
+cluster BLACK with center 66,50,40
+cluster WHITE with center 175,163,151
+cluster BROWN with center 133,91,59
+cluster GOLD with center 211,178,142
+"""
+
 class Point():
 	def __init__(self, r, g, b, _class = -1):
 		self.r = r
@@ -20,22 +29,23 @@ class KMeans():
 		self.centers = []
 		self.clusters = [[] for _ in xrange(k)]
 
-		for i in xrange(k):
-			point = Point(random.randint(0, 255), 
-						random.randint(0, 255), 
-						random.randint(0, 255))
-			self.centers.append(point)
+		# expert system gives suggested values
+		self.centers.append(Point(85,77,72)) # Gray
+		self.centers.append(Point(55,40,31)) # Black
+		self.centers.append(Point(160,200,136)) # White
+		self.centers.append(Point(142,88,54)) # Brown
+		self.centers.append(Point(230,180,120)) # Gold
 	
 	def findNearestCenter(self, p):
 		minDis = sys.maxint
 		minIndex = -1
 		for i in xrange(self.k):
 			c = self.centers[i]
-			dis = ((c.r - p.r) ** 2 + (c.g - p.g) ** 2 + (c.b - p.b) ** 2) ** 0.5
+			dis = ((c.r - p.r) ** 2) + ((c.g - p.g) ** 2) + ((c.b - p.b) ** 2)
 			if dis < minDis:
 				minDis = dis
 				minIndex = i
-		return i
+		return minIndex
 
 	def resetClusters(self):
 		self.clusters = [[] for _ in xrange(self.k)]
@@ -45,8 +55,8 @@ class KMeans():
 			cluster = self.clusters[i] 
 			size = len(cluster)
 			if size == 0:
-				return
-				
+				continue
+
 			rSum, gSum, bSum = 0, 0, 0
 			for j in xrange(size):
 				rSum += cluster[j].r
@@ -112,19 +122,21 @@ class Io():
 
 io = Io('rgb_quantization.txt')
 io.readData()
-kmeans = KMeans(io.getPoints(), 6, 100)
+kmeans = KMeans(io.getPoints(), 5, 1)
 kmeans.classify()
 results = kmeans.getClusters()
+
+
 for i in xrange(len(results)):
-	print "cluster {} has {} elements".format(i, len(results[i]))
-"""
-for i in xrange(len(kmeans.centers)):
-	p = kmeans.centers[i]
-	print "{} {} {} {}".format(p.r, p.g, p.b, p._class)
-"""	
+	print "cluster {} with center {},{},{} has {} elements".format(i, 
+		kmeans.centers[i].r, 
+		kmeans.centers[i].g, 
+		kmeans.centers[i].b, 
+		len(results[i]))
+
 
 # drawing
-"""
+
 fig = plt.figure(num=1)
 fig3d = plt3d.Axes3D(fig)
 
@@ -132,10 +144,39 @@ R = np.array(io.redChannel)
 G = np.array(io.greenChannel)
 B = np.array(io.blueChannel)
 
+center_r = []
+center_g = []
+center_b = []
+for i in xrange(kmeans.k):
+	center_r.append(kmeans.centers[i].r)
+	center_g.append(kmeans.centers[i].g)
+	center_b.append(kmeans.centers[i].b)
+CR = np.array(center_r)
+CG = np.array(center_g)
+CB = np.array(center_b)
+
 ax = plt.gca()
 ax.hold(True)
 
+# plot center
+for i in xrange(kmeans.k):
+	color = "red"
+	if i == 0:
+		color = "red"
+	elif i == 1:
+		color = "orange"
+	elif i == 2:
+		color = "yellow"
+	elif i == 3:
+		color = "green"
+	elif i == 4:
+		color= "blue"
+	else:
+		color = "purple"
 
+	ax.scatter(CR[i], CG[i], CB[i], color=color)
+
+# plot data
 for i in xrange(0, len(R), 1):
 	r = "%02x" % (R[i])
 	g = "%02x" % (G[i])
@@ -144,4 +185,3 @@ for i in xrange(0, len(R), 1):
 	ax.scatter(R[i], G[i], B[i], color=color)
 
 plt.show()
-"""
