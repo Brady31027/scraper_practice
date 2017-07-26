@@ -1,5 +1,6 @@
 import re
 import random
+import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d as plt3d
@@ -12,7 +13,8 @@ class Point():
 		self._class = _class
 
 class KMeans():
-	def __init__(self, k, iterCnt):
+	def __init__(self, points, k, iterCnt):
+		self.points = points
 		self.k = k
 		self.iterCnt = iterCnt
 		self.centers = []
@@ -21,8 +23,34 @@ class KMeans():
 						random.randint(0, 255), 
 						random.randint(0, 255))
 			self.centers.append(point)
-	def classify(self):
+	
+	def findNearestCenter(self, p):
+		minDis = sys.maxint
+		minIndex = -1
+		for i in xrange(self.k):
+			c = self.centers[i]
+			dis = ((c.r - p.r) ** 2 + (c.g - p.g) ** 2 + (c.b - p.b) ** 2) ** 0.5
+			if dis < minDis:
+				minDis = dis
+				minIndex = i
+		return i
+
+	def calculateCenter(self):
 		pass
+		
+	def classify(self):
+		runCnt = 0
+		clusterChanged = True
+		while runCnt < self.iterCnt and clusterChanged:
+			clusterChanged = False
+			for p in self.points:
+				cluster = self.findNearestCenter(p)
+				if cluster != p._class:
+					p._class = cluster
+					clusterChanged = True
+			self.calculateCenter()
+			runCnt += 1
+
 
 class Io():
 	def __init__(self, inputFile):
@@ -45,15 +73,29 @@ class Io():
 			self.redChannel.append(  int(matchedPattern.group(1)))
 			self.greenChannel.append(int(matchedPattern.group(2)))
 			self.blueChannel.append( int(matchedPattern.group(3)))
+	
+	def getPoints(self):
+		return self.dataPoints
+
+	def getRedChannel(self):
+		return self.redChannel
+
+	def getGreenChannel(self):
+		return self.greenChannel
+	
+	def getBlueChannel(self):
+		return self.blueChannel
+
 
 io = Io('rgb_quantization.txt')
 io.readData()
-kmeans = KMeans(6, 100)
-
+kmeans = KMeans(io.getPoints(), 6, 100)
+kmeans.classify()
+"""
 for i in xrange(len(kmeans.centers)):
 	p = kmeans.centers[i]
 	print "{} {} {} {}".format(p.r, p.g, p.b, p._class)
-	
+"""	
 
 # drawing
 """
