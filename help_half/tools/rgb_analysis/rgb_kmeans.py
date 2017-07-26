@@ -18,6 +18,8 @@ class KMeans():
 		self.k = k
 		self.iterCnt = iterCnt
 		self.centers = []
+		self.clusters = [[] for _ in xrange(k)]
+
 		for i in xrange(k):
 			point = Point(random.randint(0, 255), 
 						random.randint(0, 255), 
@@ -35,22 +37,43 @@ class KMeans():
 				minIndex = i
 		return i
 
-	def calculateCenter(self):
-		pass
-		
+	def resetClusters(self):
+		self.clusters = [[] for _ in xrange(self.k)]
+
+	def calculateCenters(self):
+		for i in xrange(self.k):
+			cluster = self.clusters[i] 
+			size = len(cluster)
+			if size == 0:
+				return
+				
+			rSum, gSum, bSum = 0, 0, 0
+			for j in xrange(size):
+				rSum += cluster[j].r
+				gSum += cluster[j].g
+				bSum += cluster[j].b
+			self.centers[i].r = rSum // size
+			self.centers[i].g = gSum // size
+			self.centers[i].b = bSum // size
+
 	def classify(self):
 		runCnt = 0
 		clusterChanged = True
 		while runCnt < self.iterCnt and clusterChanged:
+			print "run cnt : {}".format(runCnt)
 			clusterChanged = False
+			self.resetClusters()
 			for p in self.points:
 				cluster = self.findNearestCenter(p)
 				if cluster != p._class:
 					p._class = cluster
 					clusterChanged = True
-			self.calculateCenter()
+					self.clusters[cluster].append(p)
+			self.calculateCenters()
 			runCnt += 1
 
+	def getClusters(self):
+		return self.clusters
 
 class Io():
 	def __init__(self, inputFile):
@@ -91,6 +114,9 @@ io = Io('rgb_quantization.txt')
 io.readData()
 kmeans = KMeans(io.getPoints(), 6, 100)
 kmeans.classify()
+results = kmeans.getClusters()
+for i in xrange(len(results)):
+	print "cluster {} has {} elements".format(i, len(results[i]))
 """
 for i in xrange(len(kmeans.centers)):
 	p = kmeans.centers[i]
