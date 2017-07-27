@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,91 +19,131 @@
   <body>
 
     <div class="container">
-      <div class="masthead">
-        <div class="row featurette">
-          <div class="col-md-1">
-              <img class="featurette-image" src="./dist/img/logo.jpg" width='100' height='100'>
-          </div>
-          <div class="col-md-11">
-              <h1 class="text-logo">HELP HALF Quotation</h1>
-          </div>
-        </div>
+    	<div class="masthead">
+        	<div class="row featurette">
+          		<div class="col-md-1">
+              		<img class="featurette-image" src="./dist/img/logo.jpg" width='100' height='100'>
+          		</div>
+          		<div class="col-md-11">
+            		<h1 class="text-logo">HELP HALF Quotation</h1>
+          		</div>
+        	</div>
      
+	        <nav class="navbar navbar-light bg-faded rounded mb-3">
+	     	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            	<span class="navbar-toggler-icon"></span>
+          		</button>
+	          	<div class="collapse navbar-toggleable-md" id="navbarCollapse">
+	            	<ul class="nav navbar-nav text-md-center justify-content-md-between">
+	              		<li class="nav-item active">
+	                		<a class="nav-link" href="#">
+	                			<span id="home">Home</span>
+	                			<span class="sr-only">(current)</span>
+	                		</a>
+	              		</li>
+	              		<li class="nav-item">
+	                		<a class="nav-link" href="#">
+	                			<span id="partners">Partners</span>
+	                		</a>
+	              		</li>
+	              		<li class="nav-item">
+	                		<a class="nav-link" href="#">
+	                			<span id="contact">Contact</span>
+	                		</a>
+	              		</li>
+	              		<li class="nav-item dropdown">
+	                		<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                			<span id="language">Language</span>
+	                		</a>
+	                		<div class="dropdown-menu" aria-labelledby="dropdown01">
+	                  			<a class="dropdown-item" onclick="onChangeLang(this)" lang="en" value="en">English</a>
+	                  			<a class="dropdown-item" onclick="onChangeLang(this)" lang="tw" value="tw">繁體中文</a>
+	                  			<a class="dropdown-item" onclick="onChangeLang(this)" lang="cn" value="cn">简体中文</a>   
+	                		</div>
+	              		</li>
+	            	</ul>
+	          	</div>
+        	</nav>
+    	</div>
+      	
+      	<!-- Jumbotron -->
+      	<div class="jumbotron">
+	        <h1>
+	        	<span id="slogan">Floor Quotation should be EASY and FREE!</span>
+	        </h1>
+	        <p class="lead">
+	        	<span id="subtitle">You don't have to provide any personal information. Just need few clicks, you can quota the estimated cost.</span>
+	        </p>
+	        <p>
+	        	<a class="btn btn-lg btn-success" href="#" role="button">
+	        		<span id="try">Try Today!</span>
+	        	</a>
+	        </p>
+      	</div>
 
-        <nav class="navbar navbar-light bg-faded rounded mb-3">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-toggleable-md" id="navbarCollapse">
-            <ul class="nav navbar-nav text-md-center justify-content-md-between">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Partners</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Language</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                  <a class="dropdown-item" href="#">English</a>
-                  <a class="dropdown-item" href="#">繁體中文</a>
-                  <a class="dropdown-item" href="#">简体中文</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-      <!-- Jumbotron -->
+    	<!-- Example row of columns -->
+		<div class="row featurette">
+	    	<div class="col-md-7">
+	          	<h2 class="featurette-heading">
+	          		<span id="what">
+	          			What is <span class="text-orange">HELP</span><span class="text-gray">HALF</span> Quotation Service ?
+	          		</span>
+	          	</h2>
+	          	<p class="lead">
+	          		<span id="what-ans">
+	          		Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+	          		</span>
+	          	</p>
+	        </div>
+	        <div class="col-md-5">
+	         	 <img class="featurette-image img-fluid mx-auto" src="./dist/img/logo.jpg" alt="Generic placeholder image">
+	        </div>
+	    </div>
+
+    	<hr>
+
+     	<div class="row featurette">
+	        <div class="col-md-7 push-md-5">
+	          	<h2 class="featurette-heading">
+	          		<span id="why">
+	          			Why is <span class="text-orange">HELP</span><span class="text-gray">HALF</span> Quotation Service ?
+	          		</span>
+	          	</h2>
+	          		<p class="lead">
+	          			<span id="why-ans">
+	          			Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+	          			</span>
+	          		</p>
+	        </div>
+	     	<div class="col-md-5 pull-md-7">
+	         	<img class="featurette-image img-fluid mx-auto" src="./dist/img/logo.jpg" alt="Generic placeholder image">
+	        </div>
+    	</div>
+
+    	<hr>
+
+	    <div class="row featurette">
+	    	<div class="col-md-7">
+	          	<h2 class="featurette-heading">
+	          		<span id="who">
+	          		Who made <span class="text-orange">HELP</span><span class="text-gray">HALF</span> Quotation Service ?
+	          		</span>
+	          	</h2>
+	          	<p class="lead">
+	          		<span id="who-ans">
+	          		Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+	          		</span>
+	          	</p>
+	        </div>
+	        <div class="col-md-5">
+	          <img class="featurette-image img-fluid mx-auto" src="./dist/img/logo.jpg" alt="Generic placeholder image">
+	        </div>
+	    </div>
       
-      <div class="jumbotron">
-        <h1>Marketing stuff!</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Try Today!</a></p>
-      </div>
-
-    <!-- Example row of columns -->
-	<div class="row featurette">
-    	<div class="col-md-7">
-          	<h2 class="featurette-heading">What is <span class="text-orange">HELP</span><span class="text-gray"> HALF</span> Quotation Service ?</h2>
-          	<p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-fluid mx-auto" src="./dist/img/logo.jpg" alt="Generic placeholder image">
-        </div>
-      </div>
-
-    <hr>
-
-     <div class="row featurette">
-        <div class="col-md-7 push-md-5">
-          <h2 class="featurette-heading">Why is <span class="text-orange">HELP</span><span class="text-gray"> HALF</span> Quotation Service ?</h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-     	<div class="col-md-5 pull-md-7">
-          <img class="featurette-image img-fluid mx-auto" src="./dist/img/logo.jpg" alt="Generic placeholder image">
-        </div>
-    </div>
-
-    <hr>
-
-    <div class="row featurette">
-    	<div class="col-md-7">
-          	<h2 class="featurette-heading">Who made <span class="text-orange">HELP</span><span class="text-gray"> HALF</span> Quotation Service ?</h2>
-          	<p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-fluid mx-auto" src="./dist/img/logo.jpg" alt="Generic placeholder image">
-        </div>
-    </div>
-      
-    <!-- Site footer -->
-    <footer class="footer">
-        <p class="text-center">&copy; Help Half Inc. 2017</p>
-    </footer>
+	    <!-- Site footer -->
+	    <footer class="footer">
+	        <p class="text-center">&copy; Help Half Inc. 2017</p>
+	    </footer>
 
     </div> <!-- /container -->
 
@@ -116,6 +155,8 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="./dist/js/bootstrap.min.js"></script>
+    <script src="./dist/js/locale.js"></script>
+
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 
