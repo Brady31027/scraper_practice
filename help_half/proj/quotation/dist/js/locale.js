@@ -46,18 +46,77 @@ arr_cn[10] = 'why ans?';
 arr_cn[11] = '谁制作了 <span class="text-orange">HELP</span><span class="text-gray">HALF</span> 询价服务?';
 arr_cn[12] = 'who ans?';
 
-function onChangeLang(selected) {
+document.addEventListener("DOMContentLoaded", function() {
+	var url = location.href;
+	var params = url.split("?");
+	var vars = params[1].split("&");
+	for (var i = 0; i < vars.length; i++) {
+    	var re = /(.+)=(.+)/;
+    	var matchedPattern = re.exec(vars[i]);
+    	if (matchedPattern[1] == 'lang') {
+    		onLoadChangeLang(matchedPattern[2]);
+    	}
+   	};
+});
+
+function onChangePage(selected) {
+	var newPage = selected.getAttribute('page');
+	var url = location.href;
+	var pathArr = url.split('/');
+	var base = pathArr[pathArr.length - 1];
+	var domain = url.substring(0, url.length - base.length);
+	var params = base.split("?");
+	var newUrl = domain + newPage;
+	if (params[1] && params[1].length > 0) {
+		newUrl = newUrl + '?' + params[1];
+	}
+	window.location.replace(newUrl);
+}
+
+function onLoadChangeLang(input_lang) {
 	var lang;
-	if (selected.getAttribute('lang') == 'tw') {
-		lang = arr_tw
-	} else if (selected.getAttribute('lang') == 'cn') {
-		lang = arr_cn
-	} else if (selected.getAttribute('lang') == 'en') {
-		lang = arr_us
+	if (input_lang == 'tw') {
+		lang = arr_tw;
+	} else if (input_lang == 'cn') {
+		lang = arr_cn;
+	} else if (input_lang == 'en') {
+		lang = arr_us;
 	} else {
-		lang = arr_us
+		lang = arr_us;
 	}
 	
+	changeLang(lang);
+}
+
+function onClickChangeLang(selected) {
+	var lang;
+	var url = location.href;
+	var params = url.split("?");
+	var sub = 'lang='+selected.getAttribute('lang');
+	var re1 = /lang=(.+)&/;
+	var re2 = /lang=(.+)/;
+	
+	if (params.length > 1) { // we have params
+		var matchedPattern1 = re1.exec(url);
+
+		if (matchedPattern1 && matchedPattern1[1].length > 0) { // with following params
+			sub = sub + '&';
+			url = url.replace(re1, sub);
+		} else {
+			var matchedPattern2 = re2.exec(url);
+			if (matchedPattern2 && matchedPattern2[1].length > 0) {
+				url = url.replace(re2, sub);
+			} else {
+				url = url + '&' + sub;
+			}
+		}
+	} else {
+		url = url + '?lang=' + selected.getAttribute('lang');
+	}    
+	window.location.replace(url);
+}
+
+function changeLang(lang) {
 	document.getElementById('home').innerHTML = lang[0];
 	document.getElementById('partners').innerHTML = lang[1];
 	document.getElementById('contact').innerHTML = lang[2];
@@ -72,3 +131,4 @@ function onChangeLang(selected) {
 	document.getElementById('who').innerHTML = lang[11];
 	document.getElementById('who-ans').innerHTML = lang[12];
 }
+
