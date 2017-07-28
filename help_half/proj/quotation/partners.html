@@ -33,22 +33,34 @@
 	          	<div class="navbar-toggleable-md" id="navbar">
 	            	<ul class="nav navbar-nav text-md-center justify-content-md-between">
 	              		<li class="nav-item">
-	                		<a class="nav-link" onclick="onChangePage(this)" page="index.html">
+	                		<a class="nav-link" 
+	                			onmouseover="onMouseOverTab(this)" 
+	                			onmouseout="onMouseOutTab(this)" 
+	                			onclick="onChangePage(this)" page="index.html">
 	                			<span id="home">Home</span>
 	                		</a>
 	              		</li>
 	              		<li class="nav-item active">
-	                		<a class="nav-link" onclick="onChangePage(this)" page="partners.html">
+	                		<a class="nav-link" 
+	                			onmouseover="onMouseOverTab(this)" 
+	                			onmouseout="onMouseOutTab(this)" 
+	                			onclick="onChangePage(this)" page="partners.html">
 	                			<span id="partners">Partners</span>
 	                		</a>
 	              		</li>
 	              		<li class="nav-item">
-	                		<a class="nav-link" href="#">
+	                		<a class="nav-link"
+	                			onmouseover="onMouseOverTab(this)" 
+	                			onmouseout="onMouseOutTab(this)" 
+	                			onclick="onChangePage(this)" page="contact.html" 
+	                			>
 	                			<span id="contact">Contact</span>
 	                		</a>
 	              		</li>
 	              		<li class="nav-item dropdown">
-	                		<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                		<a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+	                		onmouseover="onMouseOverTab(this)" 
+	                		onmouseout="onMouseOutTab(this)" >
 	                			<span id="language">Language</span>
 	                		</a>
 	                		<div class="dropdown-menu" aria-labelledby="dropdown01">
@@ -150,7 +162,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="./dist/js/bootstrap.min.js"></script>
     <script src="./dist/js/locale.js"></script>
-
+    <script src="./dist/js/ui.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 
