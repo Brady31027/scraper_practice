@@ -1,5 +1,4 @@
 function onMouseOverTab(selected) {
-	//alert(selected);
 	selected.style.background = '#BDBDBD';
 }
 function onMouseOutTab(selected) {
