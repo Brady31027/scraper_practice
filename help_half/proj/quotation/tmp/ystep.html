@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/ystep.css">
+  </head>
+<body>
+  
+  
+  <br><br><br><br><br>
+  
+  <div class="ystep2"></div>
+
+  <br><br><br><br><br>
+  
+  <div class="ystep4"></div>
+  
+  <!-- 引入jquery -->
+  <script src="js/jquery.min.js"></script>
+  <!-- 引入ystep插件 -->
+  <script src="js/ystep.js"></script>
+  <script>    
+    $(".ystep4").loadStep({
+      size: "large",
+      color: "blue",
+      steps: [{
+        title: "Size",
+        content: "Estimate the total floor size"
+      },{
+        title: "Material",
+        content: "Choose the wood you like"
+      },{
+        title: "Labor",
+        content: "How do you want us to do the floor?"
+      },{
+        title: "Cost",
+        content: "Get you final quotation"
+      }]
+    });
+    
+    $(".ystep4").setStep(1);
+    
+  </script>
+  </body>
+</html>
