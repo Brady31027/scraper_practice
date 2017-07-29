@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./dist/img/icon.ico">
+
+    <title>HELP HALF Quotation</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./dist/css/justified-nav.css" rel="stylesheet">
+    
+  </head>
+
+  <body>
+
+    <div class="container">
+		<div class="masthead">
+        	<div class="row featurette">
+          		<div class="col-md-2">
+              		<img class="featurette-image" src="./dist/img/logo.jpg" width='100' height='100'>
+          		</div>
+          		<div class="col-md-10">
+            		<h1 class="text-logo">HELP HALF Quotation</h1>
+          		</div>
+        	</div>
+     
+	        <nav class="navbar navbar-light bg-faded rounded mb-3">  	    
+	          	<div class="navbar-toggleable-md" id="navbar">
+	            	<ul class="nav navbar-nav text-md-center justify-content-md-between">
+	              		<li class="nav-item">
+	                		<a class="nav-link" 
+	                			onmouseover="onMouseOverTab(this)" 
+	                			onmouseout="onMouseOutTab(this)" 
+	                			onclick="onChangePage(this)" page="index.html">
+	                			<span id="home">Home</span>
+	                		</a>
+	              		</li>
+	              		<li class="nav-item">
+	                		<a class="nav-link" 
+	                			onmouseover="onMouseOverTab(this)" 
+	                			onmouseout="onMouseOutTab(this)" 
+	                			onclick="onChangePage(this)" page="partners.html">
+	                			<span id="partners">Partners</span>
+	                		</a>
+	              		</li>
+	              		<li class="nav-item active">
+	                		<a class="nav-link" 
+	                			onmouseover="onMouseOverTab(this)" 
+	                			onmouseout="onMouseOutTab(this)" 
+	                			onclick="onChangePage(this)" page="contact.html">
+	                			<span id="contact">Contact</span>
+	                		</a>
+	              		</li>
+	              		<li class="nav-item dropdown">
+	                		<a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+	                		onmouseover="onMouseOverTab(this)" 
+	                		onmouseout="onMouseOutTab(this)" >
+	                			<span id="language">Language</span>
+	                		</a>
+	                		<div class="dropdown-menu" aria-labelledby="dropdown01">
+	                  			<a class="dropdown-item" onclick="onClickChangeLang(this)" lang="en" value="en">English</a>
+	                  			<a class="dropdown-item" onclick="onClickChangeLang(this)" lang="tw" value="tw">繁體中文</a>
+	                  			<a class="dropdown-item" onclick="onClickChangeLang(this)" lang="cn" value="cn">简体中文</a>   
+	                		</div>
+	              		</li>
+	            	</ul>
+	          	</div>
+        	</nav>
+    	</div>
+      	
+      	<!-- Jumbotron -->
+      	<div class="jumbotron">
+	        <h1>
+	        	<span id="slogan">Floor Quotation should be EASY and FREE!</span>
+	        </h1>
+	        <p class="lead">
+	        	<span id="subtitle">You don't have to provide any personal information. Just need few clicks, you can quota the estimated cost.</span>
+	        </p>
+	        <p>
+	        	<a class="btn btn-lg btn-success" href="#" role="button">
+	        		<span id="try">Try Today!</span>
+	        	</a>
+	        </p>
+      	</div>
+      	
+      	<div class="col-lg-10 col-centered">
+	      	<div class="input-group input-group-lg">
+	  			<span class="input-group-addon" id="sizing-addon1">
+	  				<img src="./dist/img/icon_usr.png">
+	  			</span>
+	  			<input type="text" class="form-control" placeholder="Please tell us how to call you" aria-describedby="sizing-addon1">
+			</div>
+			<div class="input-group input-group-lg">
+	  			<span class="input-group-addon" id="sizing-addon1">
+	  				<img src="./dist/img/icon_mail.png">
+	  			</span>
+	  			<input type="text" class="form-control" placeholder="Please tell us your email so we can reply your message" aria-describedby="sizing-addon1">
+			</div>
+			<div class="input-group input-group-lg">
+	  			<span class="input-group-addon" id="sizing-addon1">
+	  				<img src="./dist/img/icon_note.png">
+	  			</span>
+	  			<textarea class="form-control" rows="3" placeholder="Leave a message" required></textarea>
+			</div>
+		</div>
+		<div class="col-lg-2 col-centered">
+			<button type="submit" class="btn btn-success btn-centered" onclick="toast()">
+				Submit
+			</button>
+			<div id="snackbar">Message is sent, we will get back to you soon</div>
+		</div>
+
+	    <!-- Site footer -->
+	    <footer class="footer">
+	        <p class="text-center">&copy; Help Half Inc. 2017</p>
+	    </footer>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="./dist/js/bootstrap.min.js"></script>
+    <script src="./dist/js/locale.js"></script>
+    <script src="./dist/js/ui.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+  </body>
+</html>
