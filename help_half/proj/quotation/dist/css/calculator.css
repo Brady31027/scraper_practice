@@ -1,0 +1,47 @@
+.calculator_rooms{
+    background-color: #FFF;
+    margin: 0;
+    padding: 20px;
+    color: #555;
+	font-family: 'futurafuturislightclightc', Helvetica, sans-serif;
+    font-size: 16px;
+	display:block;
+}
+
+.room_label{
+    display: inline-block;
+    min-width: 80px;
+    font-family: 'futurafuturiscregular', Helvetica, sans-serif;
+    text-transform: uppercase;
+	color:black !important;
+}
+
+.rlenght{
+    padding-left: 20px;
+	margin-right:5px;
+}
+
+.size_ft{
+	margin:0px 5px;
+}
+
+.size_in{
+	margin:0px 5px;
+}
+
+.fe_add_room{
+	font-size:24px !important;
+	cursor:pointer;
+	color: #777 !important;
+}
+
+.fe_remove_room{
+	font-size:23px !important;
+	margin-left:5px;
+	margin-top:5px;
+	cursor:pointer;
+}
+.fetotalrooms{
+	margin-top: 10px;
+	margin-left: 10px;
+}

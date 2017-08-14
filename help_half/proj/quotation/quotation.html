@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./dist/img/icon.ico">
+
+    <title>HELP HALF Quotation</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./dist/css/justified-nav.css" rel="stylesheet">
+
+    <!-- Custom styles for calculator-->
+    <link href="./dist/css/calculator.css" rel="stylesheet">
+    <link href="./dist/css/icons.css" rel="stylesheet">
+    
+  </head>
+
+  <body>
+
+    <div class="container">
+		<div class="masthead">
+        	<div class="row featurette">
+          		<div class="col-md-2">
+              		<img class="featurette-image" src="./dist/img/logo.jpg" width='100' height='100'>
+          		</div>
+          		<div class="col-md-10">
+            		<h1 class="text-logo">HELP HALF Quotation</h1>
+          		</div>
+        	</div>
+     
+	        <nav class="navbar navbar-light bg-faded rounded mb-3">  	    
+	          	<div class="navbar-toggleable-md" id="navbar">
+	            	<ul class="nav navbar-nav text-md-center justify-content-md-between">
+	              		<li class="nav-item">
+	                		<a class="nav-link" 
+	                			onmouseover="onMouseOverTab(this)" 
+	                			onmouseout="onMouseOutTab(this)" 
+	                			onclick="onChangePage(this)" page="index.html">
+	                			<span id="home">Home</span>
+	                		</a>
+	              		</li>
+	              		<li class="nav-item">
+	                		<a class="nav-link" 
+	                			onmouseover="onMouseOverTab(this)" 
+	                			onmouseout="onMouseOutTab(this)" 
+	                			onclick="onChangePage(this)" page="partners.html">
+	                			<span id="partners">Partners</span>
+	                		</a>
+	              		</li>
+	              		<li class="nav-item active">
+	                		<a class="nav-link" 
+	                			onmouseover="onMouseOverTab(this)" 
+	                			onmouseout="onMouseOutTab(this)" 
+	                			onclick="onChangePage(this)" page="contact.html">
+	                			<span id="contact">Contact</span>
+	                		</a>
+	              		</li>
+	              		<li class="nav-item dropdown">
+	                		<a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+	                		onmouseover="onMouseOverTab(this)" 
+	                		onmouseout="onMouseOutTab(this)" >
+	                			<span id="language">Language</span>
+	                		</a>
+	                		<div class="dropdown-menu" aria-labelledby="dropdown01">
+	                  			<a class="dropdown-item" onclick="onClickChangeLang(this)" lang="en" value="en">English</a>
+	                  			<a class="dropdown-item" onclick="onClickChangeLang(this)" lang="tw" value="tw">繁體中文</a>
+	                  			<a class="dropdown-item" onclick="onClickChangeLang(this)" lang="cn" value="cn">简体中文</a>   
+	                		</div>
+	              		</li>
+	            	</ul>
+	          	</div>
+        	</nav>
+    	</div>
+      	
+      	<hr>
+
+  		<div id="accordion" role="tablist" aria-multiselectable="true">
+  			<!--Step 1-->
+	  		<div class="card">
+	    		<div class="card-header" role="tab" id="headingOne">
+	      			<h5 class="mb-0">
+	        		<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+	          			Step1: Size Estimation
+	        		</a>
+	      			</h5>
+	    		</div>
+
+	    		<div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+	      			<div class="card-block">
+	        			
+	      			<label><input type="radio" name="fe_room_size_opt" value="1"/>
+	      				Calculate Room by Room
+	      			</label>
+					
+				<div class="ferooms" id="roomParent">
+					<div class="feroom" id="1">
+						<div class="room_label">Room 1</div>
+						<span class="rlenght">Length</span>
+						<input type="text" name="fe_room_length_ft[]" size="5"/>
+						<span class="size_ft">ft</span>
+						<input type="text" name="fe_room_length_in[]" size="5"/>
+						<span class="size_in">in,</span>
+						<span class="rwidth">Width</span>
+						<input type="text" name="fe_room_width_ft[]" size="5"/>
+						<span class="size_ft">ft</span>
+						<input type="text" name="fe_room_width_in[]" size="5"/>
+						<span class="size_in">in</span>
+					</div>
+				</div> <!--ROOMS-->
+							
+				<div class="fetotalrooms">
+					<span class="dashicons dashicons-plus-alt fe_add_room" title="Add another room" onclick="addRoom(this)"></span><b class="fcsep"></b>
+				</div>
+			
+
+						<div >
+						    <table>
+						    	<tr>
+									<td style="border-bottom:1px solid DarkGray;width:37%">
+										&nbsp;
+									</td>
+									<td style="vertical-align:middle;text-align:center" rowspan="2">
+										<font color="DarkGray">
+											&nbsp;<i>or</i>&nbsp;
+										</font>
+									</td>
+									<td style="border-bottom:1px solid DarkGray;width:37%">
+										&nbsp;
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>
+							</table>
+						</div>
+
+						<div class="form-group">
+						  <label><input type="radio" name="fe_room_size_opt" value="1"/>
+	      					Directly Enter a Total Estimated Size
+	      				</label>
+						</div>
+	      			</div>
+	    		</div>
+	  		</div>
+
+	  		<!-- Step 2-->	
+	  		<div class="card">
+	    		<div class="card-header" role="tab" id="headingTwo">
+	      			<h5 class="mb-0">
+	        		<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+	          			Step2: Labour Cost Estimation
+	        		</a>
+	      			</h5>
+	    		</div>
+	    		<div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+	      			<div class="card-block">
+	        			Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+	      			</div>
+	    		</div>
+	  		</div>
+
+	  		<!-- Step 3 -->
+	  		<div class="card">
+	    		<div class="card-header" role="tab" id="headingThree">
+	      			<h5 class="mb-0">
+	        		<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+	          			Step3: Material Costs Estimation
+	        		</a>
+	      			</h5>
+	    		</div>
+	    		<div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+	      			<div class="card-block">
+	        			Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+	      			</div>
+	    		</div>
+	 		</div>
+		</div>
+ 
+	    <!-- Site footer -->
+	    <footer class="footer">
+	        <p class="text-center">&copy; Help Half Inc. 2017</p>
+	    </footer>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="./dist/js/bootstrap.min.js"></script>
+    <script src="./dist/js/locale.js"></script>
+    <script src="./dist/js/ui.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+  </body>
+</html>
