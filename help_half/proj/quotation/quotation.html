@@ -94,31 +94,30 @@
 	    		<div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
 	      			<div class="card-block">
 	        			
-	      			<label><input type="radio" name="fe_room_size_opt" value="1"/>
-	      				Calculate Room by Room
-	      			</label>
+		      			<label><input type="radio" name="fe_room_size_opt" value="1" checked="checked"/>
+		      				Calculate Room by Room
+		      			</label>
 					
-				<div class="ferooms" id="roomParent">
-					<div class="feroom" id="1">
-						<div class="room_label">Room 1</div>
-						<span class="rlenght">Length</span>
-						<input type="text" name="fe_room_length_ft[]" size="5"/>
-						<span class="size_ft">ft</span>
-						<input type="text" name="fe_room_length_in[]" size="5"/>
-						<span class="size_in">in,</span>
-						<span class="rwidth">Width</span>
-						<input type="text" name="fe_room_width_ft[]" size="5"/>
-						<span class="size_ft">ft</span>
-						<input type="text" name="fe_room_width_in[]" size="5"/>
-						<span class="size_in">in</span>
-					</div>
-				</div> <!--ROOMS-->
+						<div class="ferooms" id="roomParent">
+							<div class="feroom" id="1">
+								<div class="room_label">Room 1</div>
+								<span class="rlenght">Length</span>
+								<input type="text" name="fe_room_length_ft[]" size="5"/>
+								<span class="size_ft">ft</span>
+								<input type="text" name="fe_room_length_in[]" size="5"/>
+								<span class="size_in">in,</span>
+								<span class="rwidth">Width</span>
+								<input type="text" name="fe_room_width_ft[]" size="5"/>
+								<span class="size_ft">ft</span>
+								<input type="text" name="fe_room_width_in[]" size="5"/>
+								<span class="size_in">in</span>
+							</div>
+						</div> <!--ROOMS-->
 							
-				<div class="fetotalrooms">
-					<span class="dashicons dashicons-plus-alt fe_add_room" title="Add another room" onclick="addRoom(this)"></span><b class="fcsep"></b>
-				</div>
+						<div class="fetotalrooms">
+							<span class="dashicons dashicons-plus-alt fe_add_room" title="Add another room" onclick="addRoom(this)"></span><b class="fcsep"></b>
+						</div>
 			
-
 						<div >
 						    <table>
 						    	<tr>
@@ -143,8 +142,9 @@
 
 						<div class="form-group">
 						  <label><input type="radio" name="fe_room_size_opt" value="1"/>
-	      					Directly Enter a Total Estimated Size
-	      				</label>
+	      					Directly Enter a Total Estimated Square Feet
+							<input type="text" name="fe_estimated_total_sqft" class="fe_estimated_total_sqft"/>
+	      				  </label>
 						</div>
 	      			</div>
 	    		</div>
@@ -161,7 +161,17 @@
 	    		</div>
 	    		<div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
 	      			<div class="card-block">
-	        			Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+	        			<div class="labour">
+							<div class="labour-label">Material Type</div>
+							<hr>
+							<div class="labour-label">Installation Type</div>
+							<hr>	
+							<div class="labour-label">Stairs</div>
+							<hr>
+							<div class="labour-label">Remove Old Flooring</div>
+							<hr>
+							<div class="labour-label">Install and Paint Base Moulding</div>
+						</div>
 	      			</div>
 	    		</div>
 	  		</div>
