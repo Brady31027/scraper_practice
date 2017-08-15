@@ -51,7 +51,7 @@
 	  			<span class="input-group-addon" id="sizing-addon1">
 	  				<img src="./dist/img/icon_note.png">
 	  			</span>
-	  			<textarea class="form-control" rows="5" placeholder="What do you want to share today?" required></textarea>
+	  			<textarea id="contents" class="form-control" rows="5" placeholder="What do you want to share today?" required></textarea>
 			</div>
 		</div>
 
@@ -59,7 +59,8 @@
 			<button type="submit" class="btn btn-success btn-centered" onclick="toast()">
 				Submit
 			</button>
-			<div id="snackbar">貼文已送出，小編審核中</div>
+      <div id="snackbar_err">無法張貼空白貼文喔</div>
+			<div id="snackbar_suc">貼文已送出，小編審核中</div>
 		</div>
 
 		<hr>
