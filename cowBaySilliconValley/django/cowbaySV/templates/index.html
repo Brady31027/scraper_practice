@@ -54,7 +54,7 @@
   	  			<span class="input-group-addon" id="sizing-addon1">
   	  				<img src="{% static 'img/icon_note.png' %}">
   	  			</span>
-  	  			<textarea class="form-control" rows="5" placeholder="What do you want to share today?" required></textarea>
+  	  			<textarea id="contents" class="form-control" rows="5" placeholder="What do you want to share today?" required></textarea>
   			</div>
 		  </div>
 
@@ -62,7 +62,9 @@
 			<button type="submit" class="btn btn-success btn-centered" onclick="toast()">
 				Submit
 			</button>
-			<div id="snackbar">貼文已送出，小編審核中</div>
+      
+			<div id="snackbarErr"> 無法張貼空白貼文喔 </div>
+      <div id="snackbarSuc"> 貼文已送出，小編審核中 </div>
 		</div>
 
 		<hr>
@@ -97,10 +99,10 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/locale.js' %}"></script>
     <script src="{% static 'js/ui.js' %}"></script>
+    
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
 
   </body>
 </html>
