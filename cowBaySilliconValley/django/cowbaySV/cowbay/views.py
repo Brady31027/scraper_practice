@@ -4,11 +4,50 @@ from django.http import HttpResponse
 from django import forms
 from django.views.decorators.csrf import ensure_csrf_cookie
 from time import gmtime, strftime
+from firebase import firebase
+import requests
+import json
+import sys
+import time
+
+class FirebaseUtil:
+	def __init__(self, article, ip, city, state, country, time):
+		self.url = 'https://cowbaysillionvalleybradycheng.firebaseio.com/'
+		self.ip = ip
+		self.article = article
+		self.city = city
+		self.state = state
+		self.country = country
+		self.time = time
+
+	def post(self):
+		fb = firebase.FirebaseApplication(self.url, None)
+		hashData = {'article': self.article,
+					'ip': self.ip,
+					'city': self.city,
+					'state': self.state,
+					'country': self.country,
+					'time': self.time
+		}
+		try:
+			jsonData = json.dumps(hashData)
+			result = fb.post("/posts", jsonData)
+			return result['name']
+		except:
+			return -1
+
+def saveToDB(contents, ip, city, state, country, time):
+	db = FirebaseUtil(contents, ip, city, state, country, time)
+	key = db.post()
+	if key == -1: # error happened while posting
+		return -1
+	return 1
+
 
 @ensure_csrf_cookie
 def index(request):
 	contents = ""
-	valid = -1
+	valid = 100
 	if request.method == 'POST':
 		try:
 			contents = request.POST['contents']
@@ -22,7 +61,7 @@ def index(request):
 				state = request.POST['state']
 				country = request.POST['country']
 				time = strftime("%Y-%m-%d %H:%M:%S", gmtime()) + ' Pacific Time (UTC-8)'
-				valid = 1
+				valid = saveToDB(contents, ip, city, state, country, time)
 		except:
 			contents = ""
 			valid = 0
