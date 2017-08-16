@@ -18,6 +18,8 @@
     <link href="{% static 'css/justified-nav.css' %}" rel="stylesheet">
     <link href="{% static 'css/socialfooter.css' %}" rel="stylesheet">
     
+    <!-- Mandatory JS-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="{% static 'js/ui.js' %}"></script>
 
   </head>
@@ -59,6 +61,33 @@
     	  				    <img src="{% static 'img/icon_note.png' %}">
     	  			    </span>
     	  			    <textarea id="contents" name="contents" class="form-control" rows="5" placeholder="What do you want to share today?" required></textarea>
+
+                  <input id="ip" name="ip" type="hidden"></input>
+                  <input id="city" name="city" type="hidden"></input>
+                  <input id="state" name="state" type="hidden"></input>
+                  <input id="country" name="country" type="hidden"></input>
+                  <input id="time" name="time" type="hidden"></input>
+
+                  <script type="text/javascript">
+                      $.getJSON('http://gd.geobytes.com/GetCityDetails?callback=?', 
+                          function(data) {
+                              var ipInput = document.getElementById('ip');
+                              var cityInput = document.getElementById('city');
+                              var stateInput = document.getElementById('state');
+                              var countryInput = document.getElementById('country');
+                              var ipTbl = JSON.parse(JSON.stringify(data, null, 2));
+                              ipInput.value = ipTbl.geobytesipaddress;
+                              cityInput.value = ipTbl.geobytescity;
+                              stateInput.value = ipTbl.geobytescode;
+                              countryInput.value = ipTbl.geobytescountry;
+                              //console.log(ipTbl);
+                      });
+                  </script>
+                  
+                  <div id="snackbarErr"> 無法張貼空白貼文喔 </div>
+                  <div id="snackbarSuc"> 貼文已送出，系統排成中 </div>
+
+                  
     			    </div>
   		    </div>
 
@@ -66,9 +95,8 @@
   			      <button type="submit" class="btn btn-success btn-centered">
   				        Submit
   			      </button>
-              <div id="snackbarErr"> 無法張貼空白貼文喔 </div>
-              <div id="snackbarSuc"> 貼文已送出，小編審核中 </div>
-              <script>
+              
+              <script type="text/javascript">
                     var valid_from_django = {{valid|safe}};
                     if (valid_from_django == 0) {
                       toast_err();
@@ -76,6 +104,7 @@
                       toast_suc();
                     }
               </script>
+              
   		    </div>
       </form>
     
@@ -112,6 +141,7 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
     <!-- <script src="{% static 'js/ui.js' %}"></script>  -->
   
     

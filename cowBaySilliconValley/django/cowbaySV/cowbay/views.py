@@ -16,6 +16,11 @@ def index(request):
 				valid = 0
 				pass
 			else:
+				ip = request.POST['ip']
+				city = request.POST['city']
+				state = request.POST['state']
+				country = request.POST['country']
+				#print(ip, city, state, country)
 				valid = 1
 		except:
 			contents = ""
