@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django import forms
 from django.views.decorators.csrf import ensure_csrf_cookie
+from time import gmtime, strftime
 
 @ensure_csrf_cookie
 def index(request):
@@ -20,7 +21,7 @@ def index(request):
 				city = request.POST['city']
 				state = request.POST['state']
 				country = request.POST['country']
-				#print(ip, city, state, country)
+				time = strftime("%Y-%m-%d %H:%M:%S", gmtime()) + ' Pacific Time (UTC-8)'
 				valid = 1
 		except:
 			contents = ""
