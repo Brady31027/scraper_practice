@@ -18,6 +18,8 @@
     <link href="{% static 'css/justified-nav.css' %}" rel="stylesheet">
     <link href="{% static 'css/socialfooter.css' %}" rel="stylesheet">
     
+    <script src="{% static 'js/ui.js' %}"></script>
+
   </head>
 
   <body>
@@ -48,25 +50,35 @@
     	<!-- Example row of columns -->
 		
     	<hr>
- 
-      <div class="col-lg-12 col-centered">
-  			<div class="input-group input-group-lg">
-  	  			<span class="input-group-addon" id="sizing-addon1">
-  	  				<img src="{% static 'img/icon_note.png' %}">
-  	  			</span>
-  	  			<textarea id="contents" class="form-control" rows="5" placeholder="What do you want to share today?" required></textarea>
-  			</div>
-		  </div>
 
-		<div class="col-lg-2 col-centered">
-			<button type="submit" class="btn btn-success btn-centered" onclick="toast()">
-				Submit
-			</button>
-      
-			<div id="snackbarErr"> 無法張貼空白貼文喔 </div>
-      <div id="snackbarSuc"> 貼文已送出，小編審核中 </div>
-		</div>
+      <form name="article" action='.' method='POST'>
+          {% csrf_token %}
+          <div class="col-lg-12 col-centered">
+    			    <div class="input-group input-group-lg">
+    	  			    <span class="input-group-addon" id="sizing-addon1">
+    	  				    <img src="{% static 'img/icon_note.png' %}">
+    	  			    </span>
+    	  			    <textarea id="contents" name="contents" class="form-control" rows="5" placeholder="What do you want to share today?" required></textarea>
+    			    </div>
+  		    </div>
 
+  		    <div class="col-lg-2 col-centered">
+  			      <button type="submit" class="btn btn-success btn-centered">
+  				        Submit
+  			      </button>
+              <div id="snackbarErr"> 無法張貼空白貼文喔 </div>
+              <div id="snackbarSuc"> 貼文已送出，小編審核中 </div>
+              <script>
+                    var valid_from_django = {{valid|safe}};
+                    if (valid_from_django == 0) {
+                      toast_err();
+                    } else if (valid_from_django == 1) {
+                      toast_suc();
+                    }
+              </script>
+  		    </div>
+      </form>
+    
 		<hr>
 
 		<div class="social-link pull-right">
@@ -95,11 +107,13 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/ui.js' %}"></script>
+    <!-- <script src="{% static 'js/ui.js' %}"></script>  -->
+  
     
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
