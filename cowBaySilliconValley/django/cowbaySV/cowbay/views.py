@@ -22,16 +22,15 @@ class FirebaseUtil:
 
 	def post(self):
 		fb = firebase.FirebaseApplication(self.url, None)
-		hashData = {'article': self.article,
-					'ip': self.ip,
-					'city': self.city,
-					'state': self.state,
-					'country': self.country,
-					'time': self.time
+		data = {'article': self.article,
+				'ip': self.ip,
+				'city': self.city,
+				'state': self.state,
+				'country': self.country,
+				'time': self.time
 		}
 		try:
-			jsonData = json.dumps(hashData)
-			result = fb.post("/posts", jsonData)
+			result = fb.post("/posts", json.dumps(data))
 			return result['name']
 		except:
 			return -1
@@ -72,5 +71,19 @@ def index(request):
 	return render(request, 'index.html', locals())
 
 def posting(request):
-	return render(request, 'posting.html', locals())		
+	msg_doing = "貼文儲存中"
+	msg_done = "成功存入資料庫，等待張貼，即將跳轉首頁"
+	return render(request, 'posting.html', locals())
+
+def feedback(request):
+	msg_doing = "訊息發送中"
+	msg_done = "訊息已發送，即將跳轉首頁"
+	return render(request, 'posting.html', locals())
+
+def feedbacking(request):
+	msg_doing = "訊息發送中"
+	msg_done = "訊息已發送，即將跳轉首頁"
+	return render(request, 'posting.html', locals())
+
+
 	

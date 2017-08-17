@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from cowbay.views import index, posting
+from cowbay.views import index, posting, feedback, feedbacking
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name='index'),
     url(r'^index', index, name='index'),
     url(r'^posting', posting, name='posting'),
+    url(r'^feedback', feedback, name='feedback'),
+    url(r'^feedbacking', feedbacking, name='feedbacking'),
 ]

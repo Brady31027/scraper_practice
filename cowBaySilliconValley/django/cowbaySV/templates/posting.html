@@ -41,12 +41,12 @@
      	<div class="progress skill-bar ">
             <div class="progress-bar progress-bar-success" role="progressbar" 
                  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                    <span class="skill">Posting Progress</span>
+                    <span class="skill">Progress</span>
             </div>
         </div>
         	
     	<div id="progress-desc" class="progress-desc">
-    		<h4>貼文儲存中</h4>
+    		<h4>{{ msg_doing }}</h4>
     	</div>
         
         <script type="text/javascript">
@@ -80,7 +80,8 @@
        
 		<script type="text/javascript">
 			setTimeout(function() {
-				document.getElementById("progress-desc").innerHTML = '<h4>成功存入資料庫，等待張貼，即將跳轉首頁<h4>';
+				var msg_done = "{{msg_done}}";
+				document.getElementById("progress-desc").innerHTML = '<h4>'+msg_done+'</h4>';
 			}, 3000);
 
 			setTimeout(function() {
