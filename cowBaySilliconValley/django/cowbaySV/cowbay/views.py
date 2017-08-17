@@ -76,9 +76,7 @@ def posting(request):
 	return render(request, 'posting.html', locals())
 
 def feedback(request):
-	msg_doing = "訊息發送中"
-	msg_done = "訊息已發送，即將跳轉首頁"
-	return render(request, 'posting.html', locals())
+	return render(request, 'feedback.html', locals())
 
 def feedbacking(request):
 	msg_doing = "訊息發送中"

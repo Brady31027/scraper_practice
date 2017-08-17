@@ -22,6 +22,6 @@ urlpatterns = [
     url(r'^$', index, name='index'),
     url(r'^index', index, name='index'),
     url(r'^posting', posting, name='posting'),
-    url(r'^feedback', feedback, name='feedback'),
+    url(r'^feedback$', feedback, name='feedback'),
     url(r'^feedbacking', feedbacking, name='feedbacking'),
 ]

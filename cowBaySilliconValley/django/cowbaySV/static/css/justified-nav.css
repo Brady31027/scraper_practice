@@ -26,6 +26,11 @@ body {
   border-top: 1px solid #eee;
 }
 
+.btn-group {
+  /*display: inline-block;*/
+  float: none;
+}
+
 /* Main marketing message and sign up button */
 .jumbotron {
   background-image: url('../img/banner.jpg');
