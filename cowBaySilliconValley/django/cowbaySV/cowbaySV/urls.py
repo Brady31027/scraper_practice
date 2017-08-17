@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from cowbay.views import index
+from cowbay.views import index, posting
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name='index'),
     url(r'^index', index, name='index'),
+    url(r'^posting', posting, name='posting'),
 ]

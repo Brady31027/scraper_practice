@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django import forms
 from django.views.decorators.csrf import ensure_csrf_cookie
 from time import gmtime, strftime
@@ -43,7 +43,6 @@ def saveToDB(contents, ip, city, state, country, time):
 		return -1
 	return 1
 
-
 @ensure_csrf_cookie
 def index(request):
 	contents = ""
@@ -54,7 +53,6 @@ def index(request):
 			if len(contents.strip()) == 0:
 				contents = ""
 				valid = 0
-				pass
 			else:
 				ip = request.POST['ip']
 				city = request.POST['city']
@@ -62,9 +60,17 @@ def index(request):
 				country = request.POST['country']
 				time = strftime("%Y-%m-%d %H:%M:%S", gmtime()) + ' Pacific Time (UTC-8)'
 				valid = saveToDB(contents, ip, city, state, country, time)
+				if valid == 1:
+					print('redirect')
+					return HttpResponseRedirect('posting')
+				else:
+					print('cannot redirect')
+			
 		except:
 			contents = ""
 			valid = 0
-			pass
-		
 	return render(request, 'index.html', locals())
+
+def posting(request):
+	return render(request, 'posting.html', locals())		
+	

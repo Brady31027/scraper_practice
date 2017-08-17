@@ -25,7 +25,6 @@
   </head>
 
   <body>
-
     <div class="container">
 		<div class="masthead">
         	<div class="row featurette">
@@ -67,7 +66,7 @@
                   <input id="state" name="state" type="hidden"></input>
                   <input id="country" name="country" type="hidden"></input>
                   <input id="time" name="time" type="hidden"></input>
-
+                  
                   <script type="text/javascript">
                       $.getJSON('http://gd.geobytes.com/GetCityDetails?callback=?', 
                           function(data) {
@@ -84,32 +83,52 @@
                       });
                   </script>
                   
-                  <div id="snackbarErr"> 無法張貼空白貼文喔 </div>
-                  <div id="snackbarSuc"> 貼文已送出，系統排成中 </div>
-
+                  <div id="snackbarInputErr"> 無法張貼空白貼文喔 </div>
+                  <div id="snackbarDBErr"> 資料庫錯誤，請稍後再試 </div>
                   
     			    </div>
   		    </div>
-
+          
   		    <div class="col-lg-2 col-centered">
   			      <button type="submit" class="btn btn-success btn-centered">
-  				        Submit
+                  Submit
   			      </button>
               
               <script type="text/javascript">
-                    var valid_from_django = {{valid|safe}};
-                    if (valid_from_django == 0) {
-                      toast_err();
-                    } else if (valid_from_django == 1) {
-                      toast_suc();
-                    }
+                  var valid_from_django = {{valid|safe}};
+                  if (valid_from_django == 0) {
+                    toast_input_err();
+                  } else if (valid_from_django == -1) {
+                    toast_db_err();
+                  }
               </script>
               
   		    </div>
       </form>
+
+    <div>&nbsp;</div>
     
 		<hr>
 
+    <div>&nbsp;</div>
+
+        <div class="row">
+          <div class="col-lg-6">
+              <h2>服務說明</h2>
+              <p> 
+                感謝使用 Cowbay Sillion Valley 服務，Cowbay Sillion Valley 會以匿名形式將您的投稿張貼在「靠北矽谷」Facebook 專頁，處理時間約為 5 至 10 分鐘，感謝耐心等待。
+              </p>
+          </div>
+
+          <div class="col-lg-6">
+              <h2>發文規範</h2>
+              <p>
+                貼文請勿指名道姓，或是具名發文，或在文中直接提到任何公司、機構、學校名稱，違反規定皆會刪文。版上所有貼文皆不代表 Cowbay Sillion Valley 立場。若欲檢舉違規貼文，歡迎<a class="contact-a" href="#">聯絡我們</a>
+              </p>
+          </div>   
+        </div>
+
+    <hr>
 		<div class="social-link pull-right">
 			<div class="col-md-12">
 	            <ul class="social-network social-circle">
@@ -127,7 +146,7 @@
 		<div>&nbsp;</div>
 	    <!-- Site footer -->
 	    <footer class="footer">
-	        <p class="text-center">&copy; Cowbay Sillicon Valley. 2017</p>
+	        <p class="text-center">&copy; OJSB Studio - Cowbay Sillicon Valley. 2017</p>
 	    </footer>
 
     </div> <!-- /container -->
