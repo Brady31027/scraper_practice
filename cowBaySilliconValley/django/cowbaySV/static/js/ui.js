@@ -22,3 +22,7 @@ function toast_suc() {
     suc.className = "show";
     setTimeout(function(){ suc.className = suc.className.replace("show", ""); }, 3000);
 }
+
+function goBack() {
+    window.location.href = "index";
+}

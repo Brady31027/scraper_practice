@@ -42,6 +42,10 @@ def saveToDB(contents, ip, city, state, country, time):
 		return -1
 	return 1
 
+def sendMail(tags, reasons, ip, city, state, country, time):
+	print('[Mail] ', tags, ' ', reasons)
+	return 1
+
 @ensure_csrf_cookie
 def index(request):
 	contents = ""
@@ -60,11 +64,7 @@ def index(request):
 				time = strftime("%Y-%m-%d %H:%M:%S", gmtime()) + ' Pacific Time (UTC-8)'
 				valid = saveToDB(contents, ip, city, state, country, time)
 				if valid == 1:
-					print('redirect')
 					return HttpResponseRedirect('posting')
-				else:
-					print('cannot redirect')
-			
 		except:
 			contents = ""
 			valid = 0
@@ -76,6 +76,28 @@ def posting(request):
 	return render(request, 'posting.html', locals())
 
 def feedback(request):
+	tags, reasons, valid = "", "", 100
+	if request.method == 'POST':
+		try:
+			tags = request.POST['tags']
+			reasons = request.POST['reasons']
+			if len(tags.strip()) == 0 or len(reasons.strip()) == 0:
+				tags, reasons = "", ""
+				print("err1")
+				valid = 0
+			else:
+				ip = request.POST['ip']
+				city = request.POST['city']
+				state = request.POST['state']
+				country = request.POST['country']
+				time = strftime("%Y-%m-%d %H:%M:%S", gmtime()) + ' Pacific Time (UTC-8)'
+				valid = sendMail(tags, reasons, ip, city, state, country, time)
+				if valid == 1:
+					return HttpResponseRedirect('feedbacking')	
+				print("err2")
+		except:
+			print("err3")
+			tags, reasons, valid = "", "", 0
 	return render(request, 'feedback.html', locals())
 
 def feedbacking(request):

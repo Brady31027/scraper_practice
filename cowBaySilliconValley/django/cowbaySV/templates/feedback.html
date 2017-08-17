@@ -46,7 +46,7 @@
               </h2>
                 <p class="lead">
                   <span id="why-ans">
-                  Cowbay Sillion Valley 存在的目的是為了讓灣區人有一個抒發負面情緒的地方，但我們並不樂見社群成員互相攻擊製造仇恨。感謝您對這個社群的愛護，我們將仔細查看您回報的資料。再次感謝您熱心地回饋。
+                  Cowbay Sillion Valley 存在的目的是為了讓灣區人有一個抒發負面情緒的地方，但我們並不樂見社群成員互相攻擊製造仇恨或做出任何違反社群規範的事情。感謝您對這個社群的愛護，我們將仔細查看您回報的資料。再次感謝您熱心地回饋。
                   </span>
                 </p>
           </div>
@@ -59,14 +59,14 @@
 		
     	<hr>
 
-      <form name="feedback" action='.' method='POST'>
+      <form name="feedback" action='feedback' method='POST'>
           {% csrf_token %}
           <div class="col-lg-12 col-centered">
               <div class="input-group input-group-lg">
                   <span class="input-group-addon" id="sizing-addon1">
                     <p>貼文編號</p>
                   </span>
-                  <input id="tag" name="tag" class="form-control" placeholder="i.e. #靠北矽谷-KrhCX_TNMRzracZVDis
+                  <input id="tag" name="tags" class="form-control" placeholder="i.e. #靠北矽谷-KrhCX_TNMRzracZVDis
 " required>
                   </input>
               </div>
@@ -78,7 +78,7 @@
                   <span class="input-group-addon" id="sizing-addon1">
     	  				    <p>檢舉理由</p>
     	  			    </span>
-    	  			    <textarea id="reason" name="reason" class="form-control" rows="5" placeholder="Please tell us why you want to report this post" required></textarea>
+    	  			    <textarea id="reason" name="reasons" class="form-control" rows="5" placeholder="Please tell us why you want to report this post" required></textarea>
 
                   <input id="ip" name="ip" type="hidden"></input>
                   <input id="city" name="city" type="hidden"></input>
@@ -98,26 +98,19 @@
                               cityInput.value = ipTbl.geobytescity;
                               stateInput.value = ipTbl.geobytescode;
                               countryInput.value = ipTbl.geobytescountry;
-                              //console.log(ipTbl);
                       });
                   </script>
                   
-                  <div id="snackbarInputErr"> 無法張貼空白貼文喔 </div>
-                  <div id="snackbarDBErr"> 資料庫錯誤，請稍後再試 </div>
-                  
+                  <div id="snackbarInputErr"> 檢舉表單資料不完整 </div>
+                    
     			    </div>
               <p><font color="red">*</font> <font color="#585858">請告訴我們為什麼您想檢舉此貼文，加速我們確認貼文是否違反使用者規範。</font></p>
   		    </div>
           
   		    <div class="col-lg-4 col-centered">
               <div class="btn-group">
-    			      <button type="button" class="btn btn-info btn-centered" onclick="goToIndex()">
+    			      <button type="button" class="btn btn-info btn-centered" onclick="goBack()">
                     Go Back
-                    <script type="text/javascript">
-                        function goToIndex() {
-                          window.location.href = "index";
-                        }
-                    </script>
     			      </button>
                 <div>&nbsp;&nbsp;&nbsp;</div>
                 <button type="submit" class="btn btn-success btn-centered">
@@ -129,8 +122,6 @@
                   var valid_from_django = {{valid|safe}};
                   if (valid_from_django == 0) {
                     toast_input_err();
-                  } else if (valid_from_django == -1) {
-                    toast_db_err();
                   }
               </script>
               
