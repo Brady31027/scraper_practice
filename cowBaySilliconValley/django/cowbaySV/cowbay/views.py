@@ -44,6 +44,7 @@ def saveToDB(contents, ip, city, state, country, time):
 
 def sendMail(tags, reasons, ip, city, state, country, time):
 	print('[Mail] ', tags, ' ', reasons)
+	# mail to : brady.ojsb@gmail.com
 	return 1
 
 @ensure_csrf_cookie
