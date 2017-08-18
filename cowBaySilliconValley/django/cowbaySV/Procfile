@@ -1,0 +1,1 @@
+web: gunicorn cowbaySV.wsgi --log-file -
