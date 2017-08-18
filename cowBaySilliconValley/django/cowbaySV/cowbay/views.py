@@ -5,15 +5,13 @@ from django import forms
 from django.views.decorators.csrf import ensure_csrf_cookie
 from time import gmtime, strftime
 from firebase import firebase
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 import requests
 import json
 import sys
 import time
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 import smtplib
-from email.header import Header
-
 
 class FirebaseUtil:
 	def __init__(self, article, ip, city, state, country, time):
@@ -95,35 +93,38 @@ def feedback(request):
 				country = request.POST['country']
 				time = strftime("%Y-%m-%d %H:%M:%S", gmtime()) + ' Pacific Time (UTC-8)'
 
-				content = ''
-				content += 'tag: ' + tags + "\n"
-				#content += 'reason: ' + reasons + "\n"
-				"""
+				content = 'tag: ' + tags + "\n"
+				content += 'reason: ' + reasons + "\n"
 				content += 'ip: ' + ip + "\n"
 				content += 'city: ' + city + "\n"
 				content += 'state: ' + state + "\n"
-				content += 'country: ' + country + '\n'
-				content += 'time: ' + time + '\n'
-				"""
-				try:
-					user = 'brady.ojsb@gmail.com'
-					title = 'Cowbay Sillicon Valley Community Violation Report'
-					message = MIMEText('Python 邮件发送测试...', 'plain', 'utf-8')
-					message['From'] = Header(user, 'utf-8')
-					message['To'] =  Header(user, 'utf-8')
-					message['Subject'] = Header(title, 'utf-8')
-					server = smtplib.SMTP('smtp.gmail.com', 587)
-					server.ehlo()
-					server.starttls()
-					server.login(user, 'vince310272')
-					server.sendmail(user, [user], message)
-					valid = 1
-				except:
-					valid = 0
-					return render(request, 'feedback.html', locals())
+				content += 'country: ' + country + "\n"
+				content += 'time: ' + time + "\n"
+				
+				host = "smtp.gmail.com"
+				port = 587
+				username = "brady.ojsb@gmail.com"
+				password = "vince310272"
+				from_list = username
+				to_list = [username, ]
+
+				data = u' '.join([content]).encode('utf-8').strip()
+				msg = MIMEMultipart("alternative")
+				msg["Subject"] = u'CowbaySV Community Violation Report'
+				attachment = MIMEText(data, "plain", "utf-8")
+				msg.attach(attachment)
+				
+				email_conn = smtplib.SMTP(host, port)
+				email_conn.ehlo()
+				email_conn.starttls()
+				email_conn.login(username, password)
+				email_conn.sendmail(from_list, to_list, msg.as_string())
+				email_conn.quit()
+
+				valid = 1
 				return HttpResponseRedirect('feedbacking')	
 		except:
-			print("exception arised while sending mail")
+			return render(request, 'feedback.html', locals())
 			tags, reasons, valid = "", "", 0
 	return render(request, 'feedback.html', locals())
 
