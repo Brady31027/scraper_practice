@@ -82,7 +82,6 @@ def feedback(request):
 			reasons = request.POST['reasons']
 			if len(tags.strip()) == 0 or len(reasons.strip()) == 0:
 				tags, reasons = "", ""
-				print("empty tag or reason")
 				valid = 0	
 			else:
 				tags = tags
@@ -125,7 +124,7 @@ def feedback(request):
 				return HttpResponseRedirect('feedbacking')	
 		except:
 			return render(request, 'feedback.html', locals())
-			tags, reasons, valid = "", "", 0
+			tags, reasons, valid = "", "", -1
 	return render(request, 'feedback.html', locals())
 
 def feedbacking(request):

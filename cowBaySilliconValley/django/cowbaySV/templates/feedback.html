@@ -101,7 +101,9 @@
                       });
                   </script>
                   
+                  <div id="snackbarSuc"> 檢查中 </div>
                   <div id="snackbarInputErr"> 檢舉表單資料不完整 </div>
+                  <div id="snackbarDBErr"> 檢舉系統異常，請稍後再試 </div>
                     
     			    </div>
               <p><font color="red">*</font> <font color="#585858">請告訴我們為什麼您想檢舉此貼文，加速我們確認貼文是否違反使用者規範。</font></p>
@@ -113,20 +115,20 @@
                     Go Back
     			      </button>
                 <div>&nbsp;&nbsp;&nbsp;</div>
-                <button type="submit" class="btn btn-success btn-centered">
+                <button type="submit" class="btn btn-success btn-centered" onclick="goCheck()">
                     Submit
                 </button>
               </div>
 
-              <!--
               <script type="text/javascript">
                   var valid_from_django = {{valid|safe}};
-                  alert(valid_from_django);
                   if (valid_from_django == 0) {
                     toast_input_err();
+                  } else if (valid_from_django == -1) {
+                    toast_db_err();
                   }
               </script>
-              -->
+              
   		    </div>
       </form>
 

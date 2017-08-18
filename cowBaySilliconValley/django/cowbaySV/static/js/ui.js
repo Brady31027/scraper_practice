@@ -26,3 +26,11 @@ function toast_suc() {
 function goBack() {
     window.location.href = "index";
 }
+
+function goCheck() {
+    var tag = document.getElementById('tag').value
+    var reason = document.getElementById('reason').value
+    if (tag.trim().length > 0 && reason.trim().length > 0) {
+        toast_suc();
+    }
+}
