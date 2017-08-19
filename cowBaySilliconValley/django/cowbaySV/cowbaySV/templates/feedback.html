@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    {% load static %}
+    <link rel="icon" href="{% static 'cowbaySV/static/img/icon.png' %}">
+
+    <title>CowbaySillionValley</title>
+
+    <!-- CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="{% static 'cowbaySV/static/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'cowbaySV/static/css/justified-nav.css' %}" rel="stylesheet">
+    <link href="{% static 'cowbaySV/static/css/socialfooter.css' %}" rel="stylesheet">
+    
+    <!-- Mandatory JS-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{% static 'cowbaySV/static/js/ui.js' %}"></script>
+
+  </head>
+
+  <body>
+    <div class="container">
+		<div class="masthead">
+        	<div class="row featurette">
+          		<div class="col-md-1">
+              		<img class="featurette-image" src="{% static 'cowbaySV/static/img/logo.jpg' %}" width='100' height='100'>
+          		</div>
+          		<div class="col-md-11">
+            		<h1 class="text-logo">Cowbay Sillion Valley</h1>
+          		</div>
+        	</div>
+    	</div>
+      
+      <div class="row featurette">
+          <div class="col-md-8 push-md-4">
+              <h2 class="featurette-heading">
+                <span id="why">
+                  <b>感謝<span class="text-orange">您</span></b>
+                </span>
+              </h2>
+                <p class="lead">
+                  <span id="why-ans">
+                  Cowbay Sillion Valley 存在的目的是為了讓灣區人有一個抒發負面情緒的地方，但我們並不樂見社群成員互相攻擊製造仇恨或做出任何違反社群規範的事情。感謝您對這個社群的愛護，我們將仔細查看您回報的資料。再次感謝您熱心地回饋。
+                  </span>
+                </p>
+          </div>
+        <div class="col-md-4 pull-md-8">
+            <img class="featurette-image img-fluid mx-auto" src="{% static 'cowbaySV/static/img/love.jpg' %}" alt="Generic placeholder image">
+          </div>
+      </div>
+
+    	<!-- Example row of columns -->
+		
+    	<hr>
+
+      <form name="feedback" action='feedback' method='POST'>
+          {% csrf_token %}
+          <div class="col-lg-12 col-centered">
+              <div class="input-group input-group-lg">
+                  <span class="input-group-addon" id="sizing-addon1">
+                    <p>貼文編號</p>
+                  </span>
+                  <input id="tag" name="tags" class="form-control" placeholder="i.e. #靠北矽谷-KrhCX_TNMRzracZVDis
+" required>
+                  </input>
+              </div>
+              <p><font color="red">*</font> <font color="#585858">您可以從「靠北矽谷」Facebook 專頁中的貼文找到對應的 tag，此 tag 將幫助我們快速找到您欲檢舉的貼文</font></p>
+
+              <hr>
+
+    			    <div class="input-group input-group-lg">
+                  <span class="input-group-addon" id="sizing-addon1">
+    	  				    <p>檢舉理由</p>
+    	  			    </span>
+    	  			    <textarea id="reason" name="reasons" class="form-control" rows="5" placeholder="Please tell us why you want to report this post" required></textarea>
+
+                  <input id="ip" name="ip" type="hidden"></input>
+                  <input id="city" name="city" type="hidden"></input>
+                  <input id="state" name="state" type="hidden"></input>
+                  <input id="country" name="country" type="hidden"></input>
+                  <input id="time" name="time" type="hidden"></input>
+                  
+                  <script type="text/javascript">
+                      $.getJSON('http://gd.geobytes.com/GetCityDetails?callback=?', 
+                          function(data) {
+                              var ipInput = document.getElementById('ip');
+                              var cityInput = document.getElementById('city');
+                              var stateInput = document.getElementById('state');
+                              var countryInput = document.getElementById('country');
+                              var ipTbl = JSON.parse(JSON.stringify(data, null, 2));
+                              ipInput.value = ipTbl.geobytesipaddress;
+                              cityInput.value = ipTbl.geobytescity;
+                              stateInput.value = ipTbl.geobytescode;
+                              countryInput.value = ipTbl.geobytescountry;
+                      });
+                  </script>
+                  
+                  <div id="snackbarSuc"> 檢查中 </div>
+                  <div id="snackbarInputErr"> 檢舉表單資料不完整 </div>
+                  <div id="snackbarDBErr"> 檢舉系統異常，請稍後再試 </div>
+                    
+    			    </div>
+              <p><font color="red">*</font> <font color="#585858">請告訴我們為什麼您想檢舉此貼文，加速我們確認貼文是否違反使用者規範。</font></p>
+  		    </div>
+          
+  		    <div class="col-lg-4 col-centered">
+              <div class="btn-group">
+    			      <button type="button" class="btn btn-info btn-centered" onclick="goBack()">
+                    Go Back
+    			      </button>
+                <div>&nbsp;&nbsp;&nbsp;</div>
+                <button type="submit" class="btn btn-success btn-centered" onclick="goCheck()">
+                    Submit
+                </button>
+              </div>
+
+              <script type="text/javascript">
+                  var valid_from_django = {{valid|safe}};
+                  if (valid_from_django == 0) {
+                    toast_input_err();
+                  } else if (valid_from_django == -1) {
+                    toast_db_err();
+                  }
+              </script>
+              
+  		    </div>
+      </form>
+
+    <div>&nbsp;</div>
+
+    <hr>
+		<div class="social-link pull-right">
+			<div class="col-md-12">
+	            <ul class="social-network social-circle">
+	            	<li>
+	            		<a href="https://www.facebook.com/cowbaySiliconValley/" class="icoFacebook" title="Facebook">
+	            			<i class="fa fa-facebook"></i>
+	            		</a>
+	            		<p>
+	            			<h4>靠北矽谷 Facebook 粉絲專頁</h4>
+	            		</p>
+	            	</li>   
+	            </ul>			
+			</div>
+		</div>
+		<div>&nbsp;</div>
+	    <!-- Site footer -->
+	    <footer class="footer">
+	        <p class="text-center">&copy; OJSB Studio - Cowbay Sillicon Valley. 2017</p>
+	    </footer>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="{% static 'cowbaySV/static/js/bootstrap.min.js' %}"></script>
+
+    <!-- <script src="{% static 'js/ui.js' %}"></script>  -->
+  
+    
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+
+  </body>
+</html>

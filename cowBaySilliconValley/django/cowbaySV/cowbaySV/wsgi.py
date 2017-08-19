@@ -12,14 +12,15 @@ import os
 from django.core.wsgi import get_wsgi_application
 from whitenoise.django import DjangoWhiteNoise #heroku add
 
-onHeroku = False
+onHeroku = True
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cowbaySV.settings")
 
-application = ''
+#if onHeroku:
+application = get_wsgi_application()
 if onHeroku:
 	application = DjangoWhiteNoise(application)
-else:
-	application = get_wsgi_application()
+#else:
+#	application = get_wsgi_application()
 
 
