@@ -132,5 +132,8 @@ def feedbacking(request):
 	msg_done = "訊息已發送，即將跳轉首頁"
 	return render(request, 'posting.html', locals())
 
+def privacy_policy(request):
+	return render(request, 'privacy_policy.html', locals())
+
 
 	

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from cowbay.views import index, posting, feedback, feedbacking
+from cowbay.views import index, posting, feedback, feedbacking, privacy_policy
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^posting', posting, name='posting'),
     url(r'^feedback$', feedback, name='feedback'),
     url(r'^feedbacking', feedbacking, name='feedbacking'),
+    url(r'^privacy_policy', privacy_policy, name='privacy_policy'),
 ]
