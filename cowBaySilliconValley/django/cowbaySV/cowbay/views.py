@@ -63,7 +63,7 @@ def index(request):
 				time = strftime("%Y-%m-%d %H:%M:%S", gmtime()) + ' Pacific Time (UTC-8)'
 				valid = saveToDB(contents, ip, city, state, country, time)
 				if valid == 1:
-					return HttpResponseRedirect('posting')
+					return HttpResponseRedirect('posting', locals())
 		except:
 			contents = ""
 			valid = 0

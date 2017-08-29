@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    
     <!-- {% load staticfiles %} -->
     {% load static %}
     <link rel="icon" href="{% static 'cowbaySV/static/img/icon.png' %}">
@@ -20,12 +20,57 @@
     <link href="{% static 'cowbaySV/static/css/socialfooter.css' %}" rel="stylesheet">
     
     <!-- Mandatory JS-->
-    <script src="{% static 'cowbaySV/static/css/jquery1111.css' %}"></script>
+    <script src="{% static 'cowbaySV/static/js/jquery1111.js' %}"></script>
     <script src="{% static 'cowbaySV/static/js/ui.js' %}"></script>
 
   </head>
 
   <body>
+    <!-- facebook-->
+    <script>
+      function statusChangeCallback(response) {
+        console.log('statusChangeCallback');
+        console.log(response);
+        if (response.status === 'connected') {
+          document.getElementById("submit").style.display = "block";
+          FB.api('/me', function(response) {
+              document.getElementById("fb_info").innerHTML = "您將使用 FB 帳號: "+ response.name+" 分享" ;    
+          });
+        
+          console.log('connected');
+        } else {
+          document.getElementById("submit").style.display = 'none';
+          document.getElementById("fb_info").innerHTML = "您尚未連結你的 FB 帳號";
+          console.log('err somehow cannot connect');
+        }
+      }
+
+      function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        });
+        console.log('called auto login via checkLoginState()');
+      }
+
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '{1982067412011247}',
+          cookie     : true,  // enable cookies to allow the server to access the session
+          xfbml      : true,  // parse social plugins on this page
+          version    : 'v2.10' // use graph api version 2.8
+        });
+      };
+
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.10&appId=1982067412011247";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+</script>
+
     <div class="container">
 		<div class="masthead">
         	<div class="row featurette">
@@ -33,7 +78,7 @@
               		<img class="featurette-image" src="{% static 'cowbaySV/static/img/logo.jpg' %}" width='100' height='100'>
           		</div>
           		<div class="col-md-11">
-            		<h1 class="text-logo">Cowbay Sillion Valley</h1>
+            		<h1 class="text-logo">矽谷大小事</h1>
           		</div>
         	</div>
     	</div>
@@ -41,10 +86,10 @@
       	<!-- Jumbotron -->
       	<div class="jumbotron">
 	        <h1>
-	        	<span id="slogan">靠北矽谷鍵盤指揮部</span>
+	        	<span id="slogan">矽谷大小事</span>
 	        </h1>
 	        <p class="lead">
-	        	<span id="subtitle">靠北有理，真愛無價。我們熱愛灣區，但有些鳥事我不吐不快。</span>
+	        	<span id="subtitle">和我們分享今天灣區有什麼好看好玩好分享的事情吧。</span>
 	        </p>
 	        
       	</div>
@@ -52,6 +97,23 @@
     	<!-- Example row of columns -->
 		
     	<hr>
+    
+    <div><h2> Step1: 連結您的 Facebook </h2></div>
+    <div>
+      <p>系統說明: 您必須使用 facebook 帳號登入，方能同步資料至 facebook 粉絲團</p>
+    </div>
+
+     <div id="fb-root"></div>
+     <div id="fb_btn" class="fb-login-button" data-width="400" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true" scope="public_profile,email,manage_pages,publish_pages" onlogin="checkLoginState();">
+     </div>
+
+     <div>
+      <p id="fb_info">您尚未連結你的 FB 帳號</p>
+    </div>
+
+    <hr>
+
+    <div><h2> Step2: 和我們分享今天灣區的新鮮事吧 </h2></div>
 
       <form name="article" action='.' method='POST'>
           {% csrf_token %}
@@ -69,18 +131,18 @@
                   <input id="time" name="time" type="hidden"></input>
                   
                   <script type="text/javascript">
-                      $.getJSON('http://gd.geobytes.com/GetCityDetails?callback=?', 
-                          function(data) {
-                              var ipInput = document.getElementById('ip');
-                              var cityInput = document.getElementById('city');
-                              var stateInput = document.getElementById('state');
-                              var countryInput = document.getElementById('country');
-                              var ipTbl = JSON.parse(JSON.stringify(data, null, 2));
-                              ipInput.value = ipTbl.geobytesipaddress;
-                              cityInput.value = ipTbl.geobytescity;
-                              stateInput.value = ipTbl.geobytescode;
-                              countryInput.value = ipTbl.geobytescountry;
-                      });
+                    $.getJSON('https://freegeoip.net/json/?callback=?', function(data) {
+                        var ipInput = document.getElementById('ip');
+                        var cityInput = document.getElementById('city');
+                        var stateInput = document.getElementById('state');
+                        var countryInput = document.getElementById('country');
+                        var ipTbl = JSON.parse(JSON.stringify(data, null, 2));
+                        ipInput.value = ipTbl.ip;
+                        cityInput.value = ipTbl.city;
+                        stateInput.value = ipTbl.region_code;
+                        countryInput.value = ipTbl.country_name;
+                    });
+                      
                   </script>
                   
                   <div id="snackbarInputErr"> 無法張貼空白貼文喔 </div>
@@ -90,10 +152,30 @@
   		    </div>
           
   		    <div class="col-lg-2 col-centered">
-  			      <button type="submit" class="btn btn-success btn-centered">
+  			      <button id="submit" type="submit" class="btn btn-success btn-centered" style="display: none;" onclick="postToFB()">
                   Submit
   			      </button>
-              
+
+              <script type="text/javascript">
+                function postToFB() {
+                  var page_id = '958320734245072';
+                  var msg = document.getElementById('contents').value;
+                  FB.api('/' + page_id, {fields: 'access_token'}, function(response){
+                      if (response.access_token) {
+                          FB.api('/' + page_id + '/feed', 'post',
+                              {message: msg, access_token: response.access_token},
+                              function(response) {
+                                  if (!response || response.error) {
+                                      console.log(response.error.message);
+                                  } else {
+                                      console.log('post id = ' + response.id);
+                                  }
+                              }
+                          );
+                      }
+                  });
+                }
+              </script>
               <script type="text/javascript">
                   var valid_from_django = {{valid|safe}};
                   if (valid_from_django == 0) {
@@ -116,14 +198,14 @@
           <div class="col-lg-6">
               <h2>服務說明</h2>
               <p> 
-                感謝使用 Cowbay Sillion Valley 服務，Cowbay Sillion Valley 會以匿名形式將您的投稿張貼在「靠北矽谷」Facebook 專頁，處理時間約為 5 至 10 分鐘，感謝耐心等待。另請詳閱相關<a class="contact-a" href="privacy_policy">隱私權政策</a>
+                感謝使用 「矽谷大小事」服務，「矽谷大小事」 除了會將您的貼文儲存之外，會另外將您的投稿張貼在「矽谷大小事」Facebook 專頁，讓更多人能從您的貼文得知更多寶貴的資訊。另請詳閱相關<a class="contact-a" href="privacy_policy">隱私權政策</a>
               </p>
           </div>
 
           <div class="col-lg-6">
               <h2>發文規範</h2>
               <p>
-                貼文請勿指名道姓，或是具名發文，或在文中直接提到任何公司、機構、學校名稱，違反規定皆會刪文。版上所有貼文皆不代表 Cowbay Sillion Valley 立場。若欲檢舉違規貼文，歡迎<a class="contact-a" href="feedback">聯絡我們</a>
+                貼文應避免紛爭，任何引發社群糾紛的貼文，「矽谷大小事」 團隊將視情況刪除。版上所有貼文皆不代表 「矽谷大小事」 立場。若欲檢舉違規貼文，歡迎<a class="contact-a" href="feedback">聯絡我們</a>
               </p>
           </div>   
         </div>
@@ -137,7 +219,7 @@
 	            			<i class="fa fa-facebook"></i>
 	            		</a>
 	            		<p>
-	            			<h4>靠北矽谷 Facebook 粉絲專頁</h4>
+	            			<h4>矽谷大小事 Facebook 粉絲專頁</h4>
 	            		</p>
 	            	</li>   
 	            </ul>			
@@ -146,7 +228,7 @@
 		<div>&nbsp;</div>
 	    <!-- Site footer -->
 	    <footer class="footer">
-	        <p class="text-center">&copy; OJSB Studio - Cowbay Sillicon Valley. 2017</p>
+	        <p class="text-center">&copy; OJSB Studio - 「矽谷大小事」. 2017</p>
 	    </footer>
 
     </div> <!-- /container -->

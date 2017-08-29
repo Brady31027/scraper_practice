@@ -6,6 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <!-- {% load staticfiles %} -->
     {% load static %}
     <link rel="icon" href="{% static 'cowbaySV/static/img/icon.png' %}">
 
@@ -32,53 +33,34 @@
               		<img class="featurette-image" src="{% static 'cowbaySV/static/img/logo.jpg' %}" width='100' height='100'>
           		</div>
           		<div class="col-md-11">
-            		<h1 class="text-logo">矽谷大小事</h1>
+            		<h1 class="text-logo">Cowbay Sillion Valley</h1>
           		</div>
         	</div>
     	</div>
-      
-      <div class="row featurette">
-          <div class="col-md-8 push-md-4">
-              <h2 class="featurette-heading">
-                <span id="why">
-                  <b>感謝<span class="text-orange">您</span></b>
-                </span>
-              </h2>
-                <p class="lead">
-                  <span id="why-ans">
-                  「矽谷大小事」存在的目的是為了讓灣區人有一個共享資訊的地方，但我們並不樂見社群成員互相攻擊製造仇恨或做出任何違反社群規範的事情。感謝您對這個社群的愛護，我們將仔細查看您回報的資料。再次感謝您熱心地回饋。
-                  </span>
-                </p>
-          </div>
-        <div class="col-md-4 pull-md-8">
-            <img class="featurette-image img-fluid mx-auto" src="{% static 'cowbaySV/static/img/love.jpg' %}" alt="Generic placeholder image">
-          </div>
-      </div>
+      	
+      	<!-- Jumbotron -->
+      	<div class="jumbotron">
+	        <h1>
+	        	<span id="slogan">靠北矽谷鍵盤指揮部</span>
+	        </h1>
+	        <p class="lead">
+	        	<span id="subtitle">靠北有理，真愛無價。我們熱愛灣區，但有些鳥事我不吐不快。</span>
+	        </p>
+	        
+      	</div>
 
     	<!-- Example row of columns -->
 		
     	<hr>
 
-      <form name="feedback" action='feedback' method='POST'>
+      <form name="article" action='.' method='POST'>
           {% csrf_token %}
           <div class="col-lg-12 col-centered">
-              <div class="input-group input-group-lg">
-                  <span class="input-group-addon" id="sizing-addon1">
-                    <p>貼文編號</p>
-                  </span>
-                  <input id="tag" name="tags" class="form-control" placeholder="i.e. #矽谷大小事-KrhCX_TNMRzracZVDis
-" required>
-                  </input>
-              </div>
-              <p><font color="red">*</font> <font color="#585858">您可以從「矽谷大小事」Facebook 專頁中的貼文找到對應的 tag，此 tag 將幫助我們快速找到您欲檢舉的貼文</font></p>
-
-              <hr>
-
     			    <div class="input-group input-group-lg">
-                  <span class="input-group-addon" id="sizing-addon1">
-    	  				    <p>檢舉理由</p>
+    	  			    <span class="input-group-addon" id="sizing-addon1">
+    	  				    <img src="{% static 'cowbaySV/static/img/icon_note.png' %}">
     	  			    </span>
-    	  			    <textarea id="reason" name="reasons" class="form-control" rows="5" placeholder="Please tell us why you want to report this post" required></textarea>
+    	  			    <textarea id="contents" name="contents" class="form-control" rows="5" placeholder="What do you want to share today?" required></textarea>
 
                   <input id="ip" name="ip" type="hidden"></input>
                   <input id="city" name="city" type="hidden"></input>
@@ -101,25 +83,17 @@
                       });
                   </script>
                   
-                  <div id="snackbarSuc"> 檢查中 </div>
-                  <div id="snackbarInputErr"> 檢舉表單資料不完整 </div>
-                  <div id="snackbarDBErr"> 檢舉系統異常，請稍後再試 </div>
-                    
+                  <div id="snackbarInputErr"> 無法張貼空白貼文喔 </div>
+                  <div id="snackbarDBErr"> 資料庫錯誤，請稍後再試 </div>
+                  
     			    </div>
-              <p><font color="red">*</font> <font color="#585858">請告訴我們為什麼您想檢舉此貼文，加速我們確認貼文是否違反使用者規範。</font></p>
   		    </div>
           
-  		    <div class="col-lg-4 col-centered">
-              <div class="btn-group">
-    			      <button type="button" class="btn btn-info btn-centered" onclick="goBack()">
-                    Go Back
-    			      </button>
-                <div>&nbsp;&nbsp;&nbsp;</div>
-                <button type="submit" class="btn btn-success btn-centered" onclick="goCheck()">
-                    Submit
-                </button>
-              </div>
-
+  		    <div class="col-lg-2 col-centered">
+  			      <button type="submit" class="btn btn-success btn-centered">
+                  Submit
+  			      </button>
+              
               <script type="text/javascript">
                   var valid_from_django = {{valid|safe}};
                   if (valid_from_django == 0) {
@@ -133,6 +107,26 @@
       </form>
 
     <div>&nbsp;</div>
+    
+		<hr>
+
+    <div>&nbsp;</div>
+
+        <div class="row">
+          <div class="col-lg-6">
+              <h2>服務說明</h2>
+              <p> 
+                感謝使用 Cowbay Sillion Valley 服務，Cowbay Sillion Valley 會以匿名形式將您的投稿張貼在「靠北矽谷」Facebook 專頁，處理時間約為 5 至 10 分鐘，感謝耐心等待。另請詳閱相關<a class="contact-a" href="privacy_policy">隱私權政策</a>
+              </p>
+          </div>
+
+          <div class="col-lg-6">
+              <h2>發文規範</h2>
+              <p>
+                貼文請勿指名道姓，或是具名發文，或在文中直接提到任何公司、機構、學校名稱，違反規定皆會刪文。版上所有貼文皆不代表 Cowbay Sillion Valley 立場。若欲檢舉違規貼文，歡迎<a class="contact-a" href="feedback">聯絡我們</a>
+              </p>
+          </div>   
+        </div>
 
     <hr>
 		<div class="social-link pull-right">
@@ -143,7 +137,7 @@
 	            			<i class="fa fa-facebook"></i>
 	            		</a>
 	            		<p>
-	            			<h4>矽谷大小事 Facebook 粉絲專頁</h4>
+	            			<h4>靠北矽谷 Facebook 粉絲專頁</h4>
 	            		</p>
 	            	</li>   
 	            </ul>			
@@ -152,7 +146,7 @@
 		<div>&nbsp;</div>
 	    <!-- Site footer -->
 	    <footer class="footer">
-	        <p class="text-center">&copy; OJSB Studio - 「矽谷大小事」. 2017</p>
+	        <p class="text-center">&copy; OJSB Studio - Cowbay Sillicon Valley. 2017</p>
 	    </footer>
 
     </div> <!-- /container -->
